@@ -75,15 +75,14 @@ def entrenamiento(epoch, X, Y, red_neuronal, lr=0.01):
 
 N = 250
 
-datos_brasilia = circulo(num_datos=N, R=1.5, latitud=-15.7801, longitud=-47.9292)
-datos_kazajistan = circulo(num_datos=N, R=1, latitud=48.0196, longitud=66.9237)
-X = np.concatenate([datos_brasilia, datos_kazajistan])
+datos_nuevayork = circulo(num_datos=N, R=1.5, latitud=40.71427, longitud=-74.00597)
+datos_cracovia = circulo(num_datos=N, R=1, latitud=50.0614300, longitud=19.9365800)
+X = np.concatenate([datos_nuevayork, datos_cracovia])
 X = np.round(X, 3)
 print ("x", X)
 
 Y = [0] * N + [1] * N
 Y = np.array(Y).reshape(len(Y), 1)
-print(Y)
 
 neuronas = [2, 4, 8, 1]
 funciones_activacion = [relu, relu, sigmoid]
@@ -95,7 +94,6 @@ for paso in list(range(len(neuronas) - 1)):
 
 error = []
 predicciones = []
-
 for epoch in range(0, 1000):
     ronda = entrenamiento(epoch, X=X, Y=Y, red_neuronal=red_neuronal, lr=0.001)
     predicciones.append(ronda)
@@ -108,3 +106,21 @@ print('=== Y1 ===')
 print(np.round(predicciones[-1][0:N]))
 print('=== Y2 ===')
 print(np.round(predicciones[-1][N:N * 2]))
+
+#if epoch % 100 == 0:
+        #print('=== Capa 1 ===')
+        #print('W:')
+        #print(red_neuronal[0].W)
+        #print('b:')
+        #print(red_neuronal[0].b)
+        #print('=== Capa 2 ===')
+        #print('W:')
+        #print(red_neuronal[-2].W)
+        #print('b:')
+        #print(red_neuronal[-2].b)
+        #print('=== Capa 3 ===')
+        #print('W:')
+        #print(red_neuronal[-1].W)
+        #print('b:')
+        #print(red_neuronal[-1].b)
+        #print('------------------------')

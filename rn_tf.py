@@ -25,9 +25,9 @@ def circulo(num_datos=100, R=1, minimo=0, maximo=1, latitud=0, longitud=0):
 
 N = 250
 
-datos_brasilia = circulo(num_datos=N, R=1.5, latitud=-15.7801, longitud=-47.9292)
-datos_kazajistan = circulo(num_datos=N, R=1, latitud=48.0196, longitud=66.9237)
-X = np.concatenate([datos_brasilia, datos_kazajistan])
+datos_nuevayork = circulo(num_datos=N, R=1.5, latitud=40.71427, longitud=-74.00597)
+datos_cracovia = circulo(num_datos=N, R=1, latitud=50.0614300, longitud=19.9365800)
+X = np.concatenate([datos_nuevayork, datos_cracovia])
 X = np.round(X, 3)
 print ('X : ', X)
 
@@ -64,14 +64,14 @@ b = linear_model.layers[2].get_weights()[1]
 print('W 2', w)
 print('b 2', b)
 
-print('predict city 1 : brasilia')
-brasilia_matrix = tf.constant([ [-43.598, -28.107],
-                           [-46.268, -14.62 ], 
-                           [-45.154, -3.249] ], tf.float32)
+print('predict city 1 : nuevayork')
+nuevayork_matrix = tf.constant([ [42.3584300, -71.0597700],
+                           [38.8951100,-77.0363700 ], 
+                           [39.9523300, -75.1637900] ], tf.float32)
 
 #print(linear_model.predict([[-43.598 -28.107][-46.268 -14.62 ] [-45.154 -3.249] [-46.52 -21.315][-41.719 -10.532][-48.291 -28.376]] ))   
-print(linear_model.predict(brasilia_matrix).tolist() )   
-print('predict city 2 : kazajistan')
-kazajistan_matrix = tf.constant([ [65.036, 55.836],
-                           [58.542, 51.449] ], tf.float32)
-print(linear_model.predict(kazajistan_matrix).tolist() )
+print(linear_model.predict(nuevayork_matrix).tolist() )   
+print('predict city 2 : cracovia')
+cracovia_matrix = tf.constant([ [50.0343700, 19.2103700],
+                           [51.7500000, 19.4666700] ], tf.float32)
+print(linear_model.predict(cracovia_matrix).tolist() )
